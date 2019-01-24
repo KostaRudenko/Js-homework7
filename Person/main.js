@@ -78,8 +78,47 @@ class Person {
     }
 }
 
-let user = new Person ('Kosta', 20, 30, 78, 183);
+class Execute {
+    static run() {
+        this.users = [];
 
-user.checkSex();
+        let user = new Person('Kosta', 29, 'M', 79, 183);
+        let user2 = new Person('Olly', 28, 'F');
+        let user3 = new Person();
 
-console.log(user.toString());
+        this.users.push(user, user2, user3);
+
+        let showAllInfo = () => {
+            this.users.forEach((e) => {
+                if(!e.name) {
+                    e.name = 'unknown';
+                }
+
+                let info = () => {
+                    console.log(e)
+                }
+                let checkAdult = () => {
+                    if (e.isAdult()) {
+                        console.log(`${e.name} is an adult`)
+                    } else {
+                        console.log(`${e.name} is not an adult`);
+                    }
+                }
+                let checkWeight = () => {
+                    if (e.calculateIMC() === 1) {
+                        console.log(`${e.name} your weight is overweight`);
+                    } else if (e.calculateIMC() === -1) {
+                        console.log(`${e.name} your weight is underweight`);
+                    } else {
+                        console.log(`${e.name} your weight is normal`);
+                    }
+                }
+                info();
+                checkAdult();
+                checkWeight();
+            });
+        }
+        showAllInfo();
+    }
+}
+Execute.run()
